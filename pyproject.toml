@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "poc-hex"
+version = "0.1.0"
+description = ""
+authors = ["suren-sk <surirajuk24@gmail.com>"]
+
+packages = [
+    { include = "*.py"},
+    { include = "adapters"},
+    { include = "domain"},
+    { include = "utils"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.10.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+aws-lambda-powertools = "^1.26.3"
+requests = "^2.28.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
