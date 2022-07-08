@@ -50,14 +50,14 @@ wrapt = "*"
 
 [[package]]
 name = "boto3"
-version = "1.24.24"
+version = "1.24.25"
 description = "The AWS SDK for Python"
 category = "dev"
 optional = false
 python-versions = ">= 3.7"
 
 [package.dependencies]
-botocore = ">=1.27.24,<1.28.0"
+botocore = ">=1.27.25,<1.28.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.6.0,<0.7.0"
 
@@ -66,7 +66,7 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.27.24"
+version = "1.27.25"
 description = "Low-level, data-driven core of boto 3."
 category = "dev"
 optional = false
@@ -304,14 +304,8 @@ aws-lambda-powertools = [
     {file = "aws_lambda_powertools-1.26.3.tar.gz", hash = "sha256:cbd511efe82fa2115f57c4f240cd6c37dfa721b9cebe005d8266fc8dddea6de9"},
 ]
 aws-xray-sdk = []
-boto3 = [
-    {file = "boto3-1.24.24-py3-none-any.whl", hash = "sha256:ddfb72c3a24b58fde7050525f7939166816c0911196abc0d66c9d34ee26d9717"},
-    {file = "boto3-1.24.24.tar.gz", hash = "sha256:375f3276f257d1b7be8b3101427778e4e865a06ba35d3853d619b5559895a07a"},
-]
-botocore = [
-    {file = "botocore-1.27.24-py3-none-any.whl", hash = "sha256:18227ab1c4646f54cd5deb8cdf6f096ce9867b2354416f6becaea45bb12c028a"},
-    {file = "botocore-1.27.24.tar.gz", hash = "sha256:e3038a19cc442c16bdf05afd34a2b7717b3fe2ed50b3847472eb9e730cf4691a"},
-]
+boto3 = []
+botocore = []
 certifi = [
     {file = "certifi-2022.6.15-py3-none-any.whl", hash = "sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412"},
     {file = "certifi-2022.6.15.tar.gz", hash = "sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d"},
