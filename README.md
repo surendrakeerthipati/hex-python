@@ -2,7 +2,7 @@
 
 poetry-pyenv project develops in hexagonal architecture style
 
-pyenv - to manage python versions
+pyenv - to manage python versions, 
 poetry - dependency management
 
 steps :
