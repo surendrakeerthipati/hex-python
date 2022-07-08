@@ -10,7 +10,6 @@ app = APIGatewayRestResolver()
 app.include_router(router=poc_routes.router)
 
 
-# You can continue to use other utilities just as before
 @logger.inject_lambda_context(correlation_id_path=correlation_paths.API_GATEWAY_REST)
 @tracer.capture_lambda_handler
 def lambda_handler(event: dict, context: LambdaContext) -> dict:

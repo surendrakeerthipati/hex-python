@@ -18,12 +18,13 @@ def lambda_context():
 
 def test_lambda_handler(lambda_context):
     minimal_event = {
-        "path": "/todos",
+        "path": "/weather-info",
+        "queryStringParameters":{
+            "todaysDate" : "2022-07-07"
+        },
         "httpMethod": "GET",
         "requestContext": {"requestId": "227b78aa-779d-47d4-a48e-ce62120393b8"},  # correlation ID
     }
-
-    
 
     ret = app_api_poc.lambda_handler(minimal_event, lambda_context)
     assert ret["statusCode"] == 200

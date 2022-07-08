@@ -1,33 +1,23 @@
+from dataclasses import asdict
 import requests
 from requests import Response
 
 from aws_lambda_powertools import Tracer
 from aws_lambda_powertools.event_handler.api_gateway import Router
+from adapters.weather_service import WeatherInfoService
+
+from domain.poc_manager import DomainManager
 
 tracer = Tracer()
 router = Router()
 
-endpoint = "https://jsonplaceholder.typicode.com/todos"
 
-
-@router.get("/todos")
+domain_manager = DomainManager(weather_service=WeatherInfoService.from_env())
+@router.get("/weather-info")
 @tracer.capture_method
-def get_todos():
-    # api_key: str = router.current_event.get_header_value(name="X-Api-Key", case_sensitive=True, default_value="")
-
-    todos: Response = requests.get(endpoint, headers={"X-Api-Key": "api_key"})
-    todos.raise_for_status()
-
-    # for brevity, we'll limit to the first 10 only
-    return {"todos": todos.json()[:10]}
-
-
-@router.get("/todos/<todo_id>")
-@tracer.capture_method
-def get_todo_by_id(todo_id: str):  # value come as str
-    api_key: str = router.current_event.get_header_value(name="X-Api-Key", case_sensitive=True, default_value="")
-
-    todos: Response = requests.get(f"{endpoint}/{todo_id}", headers={"X-Api-Key": api_key})
-    todos.raise_for_status()
-
-    return {"todos": todos.json()}
+def get_weather_data():
+    print("Entered into routes controller ::")
+    query_params = router.current_event.query_string_parameters
+    date = query_params.get("todaysDate")
+    res = domain_manager.get_weather_data(today_date=date)    
+    return {"payload": res}
