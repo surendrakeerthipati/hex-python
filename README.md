@@ -26,4 +26,5 @@ References for installation :
 2. https://python-poetry.org/docs/
 
 Executing the tests ::
-  poetry run coverage run -m pytest
+  1.poetry run pytest 
+  2.poetry run coverage run -m pytest
