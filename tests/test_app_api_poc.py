@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-import app_api_poc
+import app_hex_api
 import pytest
 
 
@@ -28,6 +28,6 @@ def test_lambda_handler(lambda_context):
         },  # correlation ID
     }
 
-    ret = app_api_poc.lambda_handler(minimal_event, lambda_context)
+    ret = app_hex_api.lambda_handler(minimal_event, lambda_context)
     assert ret["statusCode"] == 200
     assert ret["body"] != ""

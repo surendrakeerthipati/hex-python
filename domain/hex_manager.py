@@ -1,10 +1,10 @@
 from typing import Optional
 
-from ports.out.http_interface import BaseHttpService
+from ports.out.weather_service import BaseWeatherService
 
 
 class DomainManager:
-    def __init__(self, weather_service: Optional[BaseHttpService] = None) -> None:
+    def __init__(self, weather_service: Optional[BaseWeatherService] = None) -> None:
         self.weather_service = weather_service
         pass
 

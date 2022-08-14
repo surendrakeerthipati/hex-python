@@ -12,8 +12,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10.2"
-aws-lambda-powertools = "^1.26.3"
+python = "^3.9"
 requests = "^2.28.0"
 
 [tool.poetry.dev-dependencies]
