@@ -3,10 +3,12 @@ from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.event_handler import APIGatewayRestResolver
 from aws_lambda_powertools.logging import correlation_paths
 from aws_lambda_powertools.utilities.typing import LambdaContext
+import os
 
 # Set POWERTOOLS_SERVICE_NAME environment variable to represent service
-tracer = Tracer(service="hex-api")
-logger = Logger(service="hex-api")
+os.environ["POWERTOOLS_SERVICE_NAME"] = "hex-api"
+tracer = Tracer()
+logger = Logger()
 
 app = APIGatewayRestResolver()
 app.include_router(router=hex_routes.router)
