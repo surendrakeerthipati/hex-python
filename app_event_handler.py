@@ -2,7 +2,7 @@ from aws_lambda_powertools import Logger
 from aws_lambda_powertools.utilities.data_classes import event_source, EventBridgeEvent
 
 
-logger = Logger(service="testing-poc")
+logger = Logger(service="hex-event-handler")
 
 
 @event_source(data_class=EventBridgeEvent)

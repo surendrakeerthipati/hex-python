@@ -1,14 +1,14 @@
 from aws_lambda_powertools import Tracer
 from aws_lambda_powertools.event_handler.api_gateway import Router
-from adapters.weather_service import WeatherInfoService
+from adapters.out.weather_rest_service import WeatherInfoRestService
 
-from domain.poc_manager import DomainManager
+from domain.hex_manager import DomainManager
 
 tracer = Tracer()
 router = Router()
 
 
-domain_manager = DomainManager(weather_service=WeatherInfoService.from_env())
+domain_manager = DomainManager(weather_service=WeatherInfoRestService.from_env())
 
 
 @router.get("/weather-info")

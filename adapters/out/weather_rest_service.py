@@ -4,13 +4,13 @@ import requests
 from ports.out.weather_service import BaseWeatherService
 
 
-class WeatherInfoService(BaseWeatherService):
+class WeatherInfoRestService(BaseWeatherService):
     def __init__(self, session: Optional[requests.Session] = None) -> None:
         # super().__init__()
         self.session = session
 
     @classmethod
-    def from_env(cls) -> "WeatherInfoService":
+    def from_env(cls) -> "WeatherInfoRestService":
         session = requests.Session()
         return cls(session=session)
 
