@@ -1,4 +1,3 @@
-from xml import dom
 from aws_lambda_powertools import Tracer, Logger
 from aws_lambda_powertools.event_handler.api_gateway import Router
 from adapters.out.weather_rest_service import WeatherInfoRestService
