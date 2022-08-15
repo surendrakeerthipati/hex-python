@@ -11,7 +11,7 @@ Globals:
     Timeout: 3
 
 Resources:
-  HelloWorldFunction:
+  HexApiFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: .
@@ -20,7 +20,19 @@ Resources:
       Architectures:
         - arm64
       Layers:
-        - arn:aws:lambda:us-east-1:017000801446:layer:AWSLambdaPowertoolsPython:29
-        - arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-requests:6
+        - !Sub "arn:aws:lambda:${AWS::Region}:017000801446:layer:AWSLambdaPowertoolsPython:29"
+        - !Sub "arn:aws:lambda:${AWS::Region}:770693421928:layer:Klayers-p39-requests:6"
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /weather-info
+            Method: get
+            RequestParameters:
+              - method.request.querystring.todaysDate
     Metadata:
       BuildMethod: makefile
+Outputs:
+  HexPythonApi:
+    Description: "API Gateway endpoint URL for Prod stage for Python Hex function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/weather-info"

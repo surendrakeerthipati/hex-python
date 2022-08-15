@@ -2,9 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "hex-app"
+stack_name = "hex-python-app"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-cokyhjakay5s"
-s3_prefix = "hex-app"
+s3_prefix = "hex-python-app"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"

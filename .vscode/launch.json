@@ -5,12 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "API hex-python:HexApiFunction",
+            "invokeTarget": {
+                "target": "api",
+                "templatePath": "${workspaceFolder}/template.yaml",
+                "logicalId": "HexApiFunction"
+            },
+            "api": {
+                "path": "/",
+                "httpMethod": "get",
+                "payload": {
+                    "json": {}
+                }
+            }
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "env" : {"PYTHONPATH": "${workspaceRoot}"}
-        },
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}"
+            }
+        }
     ],
 }
