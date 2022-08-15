@@ -1,6 +1,9 @@
 from aws_lambda_powertools import Tracer, Logger
 from aws_lambda_powertools.event_handler.api_gateway import Router
 from adapters.out.weather_rest_service import WeatherInfoRestService
+from aws_lambda_powertools.event_handler.exceptions import (
+    BadRequestError,
+)
 
 from domain.hex_manager import DomainManager
 
@@ -20,6 +23,8 @@ def get_weather_data():
     if domain_mgr is None:
         domain_mgr = DomainManager(weather_service=WeatherInfoRestService.from_env())
     query_params = router.current_event.query_string_parameters
+    if query_params is None or "todaysDate" not in query_params:
+        raise BadRequestError("Missing required parameter - 'todaysDate'")
     date = query_params.get("todaysDate")
     res = domain_mgr.get_weather_data(today_date=date)
     return {"payload": res}

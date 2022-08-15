@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  hex-app
+
+  Sample SAM Template for hex-app
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  HexApiFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: .
+      Handler: app_hex_api.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - arm64
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:017000801446:layer:AWSLambdaPowertoolsPython:29"
+        - !Sub "arn:aws:lambda:${AWS::Region}:770693421928:layer:Klayers-p39-requests:6"
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /weather-info
+            Method: get
+            RequestParameters:
+              - method.request.querystring.todaysDate
+    Metadata:
+      BuildMethod: makefile
+Outputs:
+  HexPythonApi:
+    Description: "API Gateway endpoint URL for Prod stage for Python Hex function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/weather-info"

@@ -28,3 +28,10 @@ References for installation :
 Executing the tests ::
   1.poetry run pytest 
   2.poetry run coverage run -m pytest
+
+### SAM CLI Deployment
+
+1. Install SAM CLI
+2. `sam build`
+3. `sam deploy`
+4. To Delete - `sam delete`
