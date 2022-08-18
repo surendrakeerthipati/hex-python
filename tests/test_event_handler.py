@@ -1,5 +1,4 @@
-import app_event_handler as handler
-from tests.test_app_api_poc import lambda_context
+import app_events as handler
 from aws_lambda_powertools.utilities.data_classes import EventBridgeEvent
 
 

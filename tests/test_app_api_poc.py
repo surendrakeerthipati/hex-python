@@ -21,7 +21,7 @@ def lambda_context():
 def test_lambda_handler(lambda_context):
     minimal_event = {
         "path": "/weather-info",
-        "queryStringParameters": {"todaysDate": "2022-07-07"},
+        "queryStringParameters": {"stateCd": "2022-07-07"},
         "httpMethod": "GET",
         "requestContext": {
             "requestId": "227b78aa-779d-47d4-a48e-ce62120393b8"

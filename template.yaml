@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   hex-app
@@ -29,9 +29,70 @@ Resources:
             Path: /weather-info
             Method: get
             RequestParameters:
-              - method.request.querystring.todaysDate
+              - method.request.querystring.stateCd
     Metadata:
       BuildMethod: makefile
+  HexEventHandler:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: .
+      Handler: app_events.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - arm64
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:017000801446:layer:AWSLambdaPowertoolsPython:29"
+      Policies:
+       - DynamoDBCrudPolicy:
+          TableName: !Ref WeatherTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref WeatherTable
+    Metadata:
+      BuildMethod: makefile
+
+  WeatherEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Weather Rule"
+      EventPattern:
+        detail-type:
+          - Weather Alert
+      State: "ENABLED"
+      Targets:
+        - Arn:
+            Fn::GetAtt:
+              - "HexEventHandler"
+              - "Arn"
+          Id: "HexEventHandler"
+  PermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Ref: "HexEventHandler"
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn:
+        Fn::GetAtt:
+          - "WeatherEventRule"
+          - "Arn"
+
+  WeatherTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: WeatherTable
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
 Outputs:
   HexPythonApi:
     Description: "API Gateway endpoint URL for Prod stage for Python Hex function"

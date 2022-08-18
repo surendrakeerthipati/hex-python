@@ -18,13 +18,13 @@ domain_mgr = None  # declared as global vars - for init purposes
 @router.get("/weather-info")
 @tracer.capture_method
 def get_weather_data():
-    print("Entered into routes controller ::")
+    logger.info("Entered into routes controller ::")
     global domain_mgr
     if domain_mgr is None:
         domain_mgr = DomainManager(weather_service=WeatherInfoRestService.from_env())
     query_params = router.current_event.query_string_parameters
-    if query_params is None or "todaysDate" not in query_params:
-        raise BadRequestError("Missing required parameter - 'todaysDate'")
-    date = query_params.get("todaysDate")
-    res = domain_mgr.get_weather_data(today_date=date)
+    if query_params is None or "stateCd" not in query_params:
+        raise BadRequestError("Missing required parameter - 'stateCd'")
+    state = query_params.get("stateCd")
+    res = domain_mgr.get_weather_data(state_cd=state)
     return {"payload": res}
