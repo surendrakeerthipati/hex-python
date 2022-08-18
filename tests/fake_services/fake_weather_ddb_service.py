@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
 import os
+from typing import TYPE_CHECKING, Optional
+
 import boto3
+
 from ports.out.weather_repository import BaseRepository
 
 if TYPE_CHECKING:

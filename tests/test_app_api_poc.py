@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 
-import app_hex_api
 import pytest
+
+import app_hex_api
 
 
 @pytest.fixture
