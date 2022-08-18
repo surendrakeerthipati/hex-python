@@ -14,20 +14,17 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+aws-lambda-powertools = "^1.26.3"
+flake8 = "^5.0.0"
+autoflake = "^1.4"
+requests = "^2.28.1"
 boto3 = "^1.24.54"
 mypy-boto3-dynamodb = "^1.24.36.post1"
 boto3-stubs = {extras = ["dynamodb"], version = "^1.24.54"}
 black = {version = "^22.6.0", allow-prereleases = true}
 types-requests = "^2.28.8"
-
-[tool.poetry.dev-dependencies]
-pytest = "^7.1.2"
-aws-lambda-powertools = "^1.26.3"
-black = "^22.6.0"
-flake8 = "^5.0.0"
-autoflake = "^1.4"
-requests = "^2.28.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
