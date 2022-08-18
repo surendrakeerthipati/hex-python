@@ -16,7 +16,7 @@ once done with the installation, run below commands to make sure pyenv installed
   example : pyenv install 3.10.2, then check below command
                                     --> python --version (now hopefully python installed)
 
-2.install poetry
+2.install poetry 
   --> poetry --version
   --> poetry env use <python-version>
   now use this env based on project requirement
