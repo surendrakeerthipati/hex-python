@@ -1,9 +1,11 @@
-from adapters.router import hex_routes
+import os
+
 from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.event_handler import APIGatewayRestResolver
 from aws_lambda_powertools.logging import correlation_paths
 from aws_lambda_powertools.utilities.typing import LambdaContext
-import os
+
+from adapters.router import hex_routes
 
 # Set POWERTOOLS_SERVICE_NAME environment variable to represent service
 os.environ["POWERTOOLS_SERVICE_NAME"] = "hex-api"

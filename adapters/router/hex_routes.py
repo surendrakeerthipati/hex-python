@@ -1,10 +1,8 @@
-from aws_lambda_powertools import Tracer, Logger
+from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.event_handler.api_gateway import Router
-from adapters.out.weather_rest_service import WeatherInfoRestService
-from aws_lambda_powertools.event_handler.exceptions import (
-    BadRequestError,
-)
+from aws_lambda_powertools.event_handler.exceptions import BadRequestError
 
+from adapters.out.weather_rest_service import WeatherInfoRestService
 from domain.hex_manager import DomainManager
 
 tracer = Tracer()

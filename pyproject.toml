@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "poc-hex"
+name = "hex-api"
 version = "0.1.0"
 description = ""
 authors = ["suren-sk <surirajuk24@gmail.com>"]
@@ -7,8 +7,10 @@ authors = ["suren-sk <surirajuk24@gmail.com>"]
 packages = [
     { include = "*.py"},
     { include = "adapters"},
+    { include = "adapters/out/"},
     { include = "domain"},
     { include = "ports"},
+    { include = "ports/out"},
 ]
 
 [tool.poetry.dependencies]
@@ -25,6 +27,10 @@ mypy-boto3-dynamodb = "^1.24.36.post1"
 boto3-stubs = {extras = ["dynamodb"], version = "^1.24.54"}
 black = {version = "^22.6.0", allow-prereleases = true}
 types-requests = "^2.28.8"
+pytest-mock = "^3.7.0"
+coverage = "^6.4.1"
+mypy = "^0.961"
+pre-commit = "^2.19.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

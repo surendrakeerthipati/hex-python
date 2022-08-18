@@ -1,7 +1,10 @@
-from aws_lambda_powertools import Logger, Tracer
 import os
-from aws_lambda_powertools.utilities.data_classes import event_source, EventBridgeEvent
+
+from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.logging import correlation_paths
+from aws_lambda_powertools.utilities.data_classes import (EventBridgeEvent,
+                                                          event_source)
+
 from adapters.eventbridge_adapter import event_handler
 
 os.environ["POWERTOOLS_SERVICE_NAME"] = "hex-event-handler"

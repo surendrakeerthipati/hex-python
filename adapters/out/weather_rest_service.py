@@ -1,6 +1,7 @@
 from typing import Optional
 
 import requests
+
 from ports.out.weather_service import BaseWeatherService
 
 

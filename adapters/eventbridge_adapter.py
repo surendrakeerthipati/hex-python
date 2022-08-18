@@ -1,7 +1,7 @@
-from aws_lambda_powertools import Tracer, Logger
-from adapters.out.weather_ddb_service import WeatherDdbService
+from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.utilities.data_classes import EventBridgeEvent
 
+from adapters.out.weather_ddb_service import WeatherDdbService
 from domain.hex_manager import DomainManager
 
 tracer = Tracer()

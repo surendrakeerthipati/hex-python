@@ -1,0 +1,21 @@
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v2.5.0
+      hooks:
+        - id: check-added-large-files
+        - id: trailing-whitespace
+        - id: check-yaml
+        - id: end-of-file-fixer
+    - repo: https://github.com/pycqa/isort
+      rev: 5.10.0
+      hooks:
+        - id: isort
+          name: isort (python)
+    - repo: local      
+      hooks:
+        - id: tests
+          name: tests
+          entry: poetry run pytest
+          language: system
+          types: [python]
+          pass_filenames: false

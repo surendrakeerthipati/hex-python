@@ -1,7 +1,7 @@
 from typing import Optional
 
-from ports.out.weather_service import BaseWeatherService
 from ports.out.weather_repository import BaseRepository
+from ports.out.weather_service import BaseWeatherService
 
 
 class DomainManager:
